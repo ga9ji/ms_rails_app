@@ -1,5 +1,4 @@
 class ChangeColumnToMovies < ActiveRecord::Migration[5.0]
-  def change
    # 変更内容
        def up
          change_column :movies, :update_status, :integer, default: 0
@@ -8,6 +7,4 @@ class ChangeColumnToMovies < ActiveRecord::Migration[5.0]
        def down
          change_column :movies, :update_status, :integer
        end
-
-  end
 end

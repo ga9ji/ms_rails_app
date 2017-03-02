@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302063644) do
+ActiveRecord::Schema.define(version: 20170302072903) do
 
   create_table "channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "channel_name"
@@ -34,19 +34,20 @@ ActiveRecord::Schema.define(version: 20170302063644) do
     t.integer  "holder_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["channel_id", "holder_id"], name: "index_holders_channels_on_channel_id_and_holder_id", unique: true, using: :btree
     t.index ["channel_id"], name: "index_holders_channels_on_channel_id", using: :btree
     t.index ["holder_id"], name: "index_holders_channels_on_holder_id", using: :btree
   end
 
   create_table "movies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "update_status"
+    t.integer  "update_status",    default: 0
     t.string   "content_tv"
     t.string   "content_pc"
     t.string   "content_sp"
     t.string   "content_tab"
     t.string   "content_original"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "page_views", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -78,14 +79,15 @@ ActiveRecord::Schema.define(version: 20170302063644) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["movie_id"], name: "index_programs_movies_on_movie_id", using: :btree
+    t.index ["program_id", "movie_id"], name: "index_programs_movies_on_program_id_and_movie_id", unique: true, using: :btree
     t.index ["program_id"], name: "index_programs_movies_on_program_id", using: :btree
   end
 
   create_table "pv_channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "pv_count"
+    t.integer  "pv_count",   default: 0
     t.integer  "channel_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.date     "date"
     t.index ["channel_id"], name: "index_pv_channels_on_channel_id", using: :btree
     t.index ["date", "channel_id"], name: "index_pv_channels_on_date_and_channel_id", using: :btree
@@ -94,9 +96,9 @@ ActiveRecord::Schema.define(version: 20170302063644) do
   create_table "pv_programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.date     "date"
     t.integer  "schedule_id"
-    t.integer  "pv_count"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "pv_count",    default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.index ["date", "schedule_id"], name: "index_pv_programs_on_date_and_schedule_id", using: :btree
     t.index ["schedule_id"], name: "index_pv_programs_on_schedule_id", using: :btree
   end
