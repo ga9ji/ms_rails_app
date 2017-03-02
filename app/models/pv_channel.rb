@@ -1,0 +1,3 @@
+class PvChannel < ApplicationRecord
+  belongs_to :channel
+end

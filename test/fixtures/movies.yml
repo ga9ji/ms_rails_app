@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  update_status: 1
+  content_tv: MyString
+  content_pc: MyString
+  content_sp: MyString
+  content_tab: MyString
+  content_original: MyString
+
+two:
+  update_status: 1
+  content_tv: MyString
+  content_pc: MyString
+  content_sp: MyString
+  content_tab: MyString
+  content_original: MyString

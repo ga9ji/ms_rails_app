@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  program: 
+  channel: 
+  user: 
+  schedule: 
+
+two:
+  program: 
+  channel: 
+  user: 
+  schedule: 
